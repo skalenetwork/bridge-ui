@@ -112,6 +112,19 @@
           }
         },
         "app": "nftrade"
+      },
+      "adorable-quaint-bellatrix": {
+        "tokens": {
+          "eth": {
+            "keyname": "eth",
+            "recommendedValues": [
+              "0.01",
+              "0.1",
+              "0.2",
+              "0.5"
+            ]
+          }
+        }
       }
     }
   },
@@ -305,6 +318,25 @@
               "2000"
             ],
             "address": "0xcbf70914Fae03B3acB91E953De60CfDAaCA8145f"
+          }
+        }
+      }
+    }
+  },
+  "adorable-quaint-bellatrix": {
+    "type": "app",
+    "chains": {
+      "mainnet": {
+        "tokens": {
+          "eth": {
+            "keyname": "eth",
+            "recommendedValues": [
+              "0.01",
+              "0.1",
+              "0.2",
+              "0.5"
+            ],
+            "address": "0xD2Aaa00700000000000000000000000000000000"
           }
         }
       }
