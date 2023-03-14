@@ -14,12 +14,14 @@ import { Metaport, interfaces, dataclasses } from '@skalenetwork/metaport';
 
 import Header from './Header';
 import SkDrawer from './SkDrawer';
+import SkBottomNavigation from './SkBottomNavigation';
 import Router from './Router';
-import Footer from './components/Footer';
+import TermsModal from './components/TermsModal';
 
 import MetamaskConnector from './MetamaskConnector';
 import { connect, addAccountChangedListener } from './core/connector'
 import { METAPORT_CONFIG } from './core/constants';
+import { BottomNavigation } from '@mui/material';
 
 
 interface MetaportThemesMap { [themeName: string]: interfaces.MetaportTheme; }
@@ -86,6 +88,7 @@ function createMuiTheme(th: any) {
 function App() {
 
   const [open, setOpen] = React.useState(false);
+  const [termsAccepted, setTermsAccepted] = React.useState<boolean>(false);
 
   const [colorScheme, setColorScheme] = React.useState('default');
   const [muiTheme, setMuiTheme] = React.useState(createMuiTheme(themes[colorScheme]));
@@ -138,6 +141,7 @@ function App() {
         className={'AppWrap bridgeUI ' + (darkMode ? 'bridgeUI-dark' : 'bridgeUI-light')}
       >
         <CssBaseline />
+        <TermsModal termsAccepted={termsAccepted} setTermsAccepted={setTermsAccepted} />
         <Header
           colorScheme={colorScheme}
           setColorScheme={setColorScheme}
@@ -147,7 +151,7 @@ function App() {
         <SkDrawer />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Toolbar />
-          {address ? <Router address={address} metaport={metaport} setOpen={setOpen} /> :
+          {address ? <Router address={address} metaport={metaport} setOpen={setOpen} theme={themes[colorScheme]} /> :
             <div className='mp__flex mp__flexCentered mp__fullHeight'>
               <div className=''>
                 <MetamaskConnector address={address} connectMetamask={connectMetamask} connect={true} />
@@ -168,6 +172,7 @@ function App() {
           </Snackbar>
         </Box>
       </Box>
+      <SkBottomNavigation />
     </ThemeProvider >
   );
 }
